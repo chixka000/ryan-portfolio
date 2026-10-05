@@ -10,6 +10,9 @@
   --cyan: #4ff8ff;
   --green: #89ff6b;
   --orange: #ff9f45;
+  --headline: #fff1b8;
+  --headline-shadow: #b85c38;
+  --headline-glow: #2f9c95;
   --shadow: #05020c;
 }
 
@@ -126,12 +129,13 @@ p {
 }
 
 h1 {
+  color: var(--headline);
   font-size: clamp(3rem, 8vw, 6.8rem);
   letter-spacing: -0.08em;
   line-height: 0.9;
   margin-bottom: 26px;
   max-width: 980px;
-  text-shadow: 5px 5px 0 var(--pink), 10px 10px 0 var(--cyan);
+  text-shadow: 4px 4px 0 var(--headline-shadow), 8px 8px 0 var(--headline-glow);
 }
 
 h2 {
