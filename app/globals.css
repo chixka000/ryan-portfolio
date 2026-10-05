@@ -1,0 +1,549 @@
+:root {
+  --bg: #160d2f;
+  --bg-deep: #080713;
+  --panel: rgba(41, 22, 78, 0.88);
+  --panel-strong: #25124b;
+  --text: #fff7d7;
+  --muted: #f8bbd0;
+  --pink: #ff4fd8;
+  --yellow: #ffe66d;
+  --cyan: #4ff8ff;
+  --green: #89ff6b;
+  --orange: #ff9f45;
+  --shadow: #05020c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255, 79, 216, 0.28), transparent 34rem),
+    radial-gradient(circle at top right, rgba(79, 248, 255, 0.2), transparent 30rem),
+    linear-gradient(135deg, var(--bg-deep), var(--bg));
+  color: var(--text);
+  font-family: "Courier New", Courier, monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 24px clamp(18px, 4vw, 72px) 80px;
+  position: relative;
+}
+
+.scanline {
+  animation: scan 8s linear infinite;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.08), transparent);
+  height: 14rem;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: -14rem;
+  z-index: 10;
+}
+
+.nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1180px;
+  position: relative;
+  z-index: 2;
+}
+
+.brand {
+  color: var(--yellow);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-shadow: 3px 3px 0 var(--pink);
+}
+
+.brand span {
+  color: var(--cyan);
+}
+
+.nav div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: flex-end;
+}
+
+.nav a:not(.brand) {
+  border: 2px solid rgba(255, 247, 215, 0.25);
+  border-radius: 999px;
+  color: var(--muted);
+  padding: 8px 12px;
+}
+
+.nav a:not(.brand):hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.heroGrid {
+  align-items: center;
+  display: grid;
+  gap: 42px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  margin: 82px auto 0;
+  max-width: 1180px;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 6.8rem);
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+  margin-bottom: 26px;
+  max-width: 980px;
+  text-shadow: 5px 5px 0 var(--pink), 10px 10px 0 var(--cyan);
+}
+
+h2 {
+  color: var(--yellow);
+  font-size: clamp(2rem, 5vw, 4.3rem);
+  letter-spacing: -0.06em;
+  margin-bottom: 0;
+  text-shadow: 4px 4px 0 var(--pink);
+}
+
+h3 {
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+
+.intro {
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.7;
+  max-width: 760px;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.button,
+button {
+  background: var(--panel-strong);
+  border: 3px solid var(--text);
+  box-shadow: 6px 6px 0 var(--shadow);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 14px 18px;
+  text-transform: uppercase;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.button:hover,
+button:hover {
+  box-shadow: 3px 3px 0 var(--shadow);
+  transform: translate(3px, 3px);
+}
+
+.button.primary {
+  background: var(--pink);
+  color: var(--bg-deep);
+}
+
+.terminal,
+.card,
+.timelineItem,
+.gameShell,
+.projectSlot {
+  background: var(--panel);
+  border: 4px solid var(--text);
+  box-shadow: 10px 10px 0 var(--shadow);
+}
+
+.terminal {
+  color: var(--muted);
+  line-height: 1.65;
+  padding: 22px;
+  transform: rotate(2deg);
+}
+
+.terminalBar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.terminalBar span {
+  background: var(--pink);
+  border: 2px solid var(--text);
+  height: 16px;
+  width: 16px;
+}
+
+.terminalBar span:nth-child(2) {
+  background: var(--yellow);
+}
+
+.terminalBar span:nth-child(3) {
+  background: var(--green);
+}
+
+.green {
+  color: var(--green);
+}
+
+.panel {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 72px clamp(18px, 4vw, 36px);
+}
+
+.sectionTitle {
+  margin-bottom: 28px;
+}
+
+.aboutCard {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+  padding: clamp(22px, 4vw, 42px);
+}
+
+.split {
+  display: grid;
+  gap: 46px;
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.skillGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skillGrid span {
+  background: var(--yellow);
+  border: 3px solid var(--shadow);
+  box-shadow: 5px 5px 0 var(--pink);
+  color: var(--bg-deep);
+  font-weight: 900;
+  padding: 10px 12px;
+}
+
+.timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.timelineItem {
+  padding: 20px;
+}
+
+.timelineItem p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+
+.timelineItem h3 span {
+  color: var(--yellow);
+}
+
+.arcadePanel {
+  max-width: 920px;
+}
+
+.gameShell {
+  padding: 20px;
+}
+
+.scoreBoard {
+  color: var(--green);
+  display: flex;
+  font-weight: 900;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.gameScreen {
+  background:
+    radial-gradient(circle at 20% 80%, rgba(79, 248, 255, 0.2), transparent 8rem),
+    radial-gradient(circle at 80% 70%, rgba(255, 230, 109, 0.16), transparent 7rem),
+    linear-gradient(#181342 0 34%, #155a8a 34% 100%);
+  border: 4px solid var(--cyan);
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gameScreen::after {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.18) 0 18px,
+      rgba(255, 255, 255, 0.02) 18px 36px
+    );
+  bottom: 0;
+  content: "";
+  height: 72px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.waterLine {
+  animation: tide 1.2s steps(2) infinite;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--cyan) 0 22px,
+      transparent 22px 42px
+    );
+  height: 8px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 88px;
+  z-index: 1;
+}
+
+.boat {
+  color: var(--yellow);
+  font-size: 3.1rem;
+  position: absolute;
+  text-shadow: 4px 4px 0 var(--pink);
+  top: 39px;
+  transform: translateX(-50%);
+  transition: left 160ms ease;
+  z-index: 3;
+}
+
+.boat::before {
+  color: var(--text);
+  content: "RYAN";
+  font-size: 0.75rem;
+  left: 50%;
+  position: absolute;
+  top: 13px;
+  transform: translateX(-50%);
+}
+
+.fishingLine {
+  background: var(--text);
+  height: 112px;
+  position: absolute;
+  top: 82px;
+  transform: translateX(-50%);
+  transition: height 220ms ease, left 160ms ease;
+  width: 4px;
+  z-index: 2;
+}
+
+.casting .fishingLine {
+  height: 150px;
+}
+
+.hook {
+  color: var(--yellow);
+  font-size: 1.45rem;
+  left: -3px;
+  position: absolute;
+  text-shadow: 2px 2px 0 var(--pink);
+  top: calc(100% - 8px);
+}
+
+.fish {
+  animation: swim 900ms steps(2) infinite;
+  color: var(--green);
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  font-weight: 900;
+  position: absolute;
+  text-shadow: 3px 3px 0 var(--bg-deep);
+  top: 156px;
+  transform: translateX(-50%);
+  transition: left 220ms ease;
+  z-index: 3;
+}
+
+.casting .fish {
+  filter: drop-shadow(0 -10px 0 var(--yellow));
+}
+
+.gameMessage {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 16px 0;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+.controls button {
+  min-width: 74px;
+}
+
+.castButton {
+  background: var(--green);
+  color: var(--bg-deep);
+  min-width: 120px;
+}
+
+.projectGrid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.projectSlot {
+  filter: grayscale(0.9);
+  min-height: 220px;
+  opacity: 0.55;
+  padding: 24px;
+  position: relative;
+}
+
+.projectSlot:not(.unlocked)::after {
+  align-items: center;
+  background: rgba(8, 7, 19, 0.78);
+  color: var(--yellow);
+  content: "LOCKED";
+  display: flex;
+  font-size: 1.3rem;
+  font-weight: 900;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.projectSlot.unlocked {
+  filter: none;
+  opacity: 1;
+}
+
+.projectSlot span {
+  color: var(--green);
+  font-weight: 900;
+}
+
+.projectSlot p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+footer {
+  align-items: center;
+  border-top: 4px solid rgba(255, 247, 215, 0.18);
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  margin: 40px auto 0;
+  max-width: 1180px;
+  padding: 28px clamp(18px, 4vw, 36px);
+}
+
+footer a {
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+@keyframes scan {
+  to {
+    transform: translateY(calc(100vh + 18rem));
+  }
+}
+
+@keyframes bob {
+  50% {
+    transform: translate(-50%, -12px);
+  }
+}
+
+@keyframes swim {
+  50% {
+    transform: translate(-50%, 6px) scaleX(1.05);
+  }
+}
+
+@keyframes tide {
+  50% {
+    transform: translateX(-20px);
+  }
+}
+
+@media (max-width: 860px) {
+  .nav,
+  .heroGrid,
+  .split,
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    align-items: flex-start;
+    display: grid;
+    gap: 18px;
+  }
+
+  .heroGrid {
+    margin-top: 54px;
+  }
+
+  h1 {
+    text-shadow: 3px 3px 0 var(--pink), 6px 6px 0 var(--cyan);
+  }
+
+  .terminal {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
