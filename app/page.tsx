@@ -45,7 +45,7 @@ const experience = [
   },
   {
     role: "Web Developer",
-    company: "Agile",
+    company: "Ajio",
     period: "Aug 2019 — Oct 2021",
     detail:
       "Built web and mobile applications, reviewed code, checked requirements, and shipped products using React / Next.js, TypeScript, Kotlin, Firebase, and CakePHP.",
@@ -65,7 +65,7 @@ const projectSlots = [
   },
   {
     name: "KUHL Core",
-    description: "KUHL system login portal.",
+    description: "Automotive company offering car modifications and parts ordering.",
     url: "https://core.kuhl-system.net/login",
   },
   {
@@ -75,7 +75,7 @@ const projectSlots = [
   },
   {
     name: "TAM Development",
-    description: "TAM application login portal.",
+    description: "Customer relationship management (CRM) application.",
     url: "https://tam-development.web.app/login",
   },
 ];
