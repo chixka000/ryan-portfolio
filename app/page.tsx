@@ -185,7 +185,6 @@ export default function Home() {
   return (
     <main>
       <section className="hero" id="top">
-        <div className="scanline" />
         <nav className="nav" aria-label="Main navigation">
           <a href="#top" className="brand">
             RC<span>_DEV</span>
@@ -200,18 +199,16 @@ export default function Home() {
 
         <div className="heroGrid">
           <div className="heroCopy">
-            <p className="eyebrow">Cebu-based full-stack developer</p>
-            <h1>
-              Ryan Canseco builds useful web apps with a playful, product-minded edge.
-            </h1>
+            <p className="eyebrow">Full-stack developer · Cebu, Philippines</p>
+            <h1>Hi, I’m Ryan Canseco<span>.</span></h1>
+            <p className="heroTagline">Useful web apps. Thoughtful engineering.</p>
             <p className="intro">
-              React / Next.js, TypeScript, Node.js, AdonisJS, Express, and database work across
-              dashboards, ecommerce tools, enrollment systems, fulfillment workflows, and
-              microservices.
+              I build dashboards, ecommerce tools, and systems that make everyday work easier.
+              From the interface to the API, I turn ideas into reliable products.
             </p>
             <div className="ctaRow">
               <a className="button primary" href="#arcade">
-                Fish to unlock projects
+                Explore projects ↗
               </a>
               <a className="button" href="/ryan-canseco-resume.pdf">
                 Download resume
@@ -219,19 +216,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="terminal" aria-label="Developer profile terminal">
-            <div className="terminalBar">
-              <span />
-              <span />
-              <span />
+          <aside className="heroProfile" aria-label="Development focus">
+            <div className="profileHeader">
+              <span className="profileMonogram" aria-hidden="true">RC</span>
+              <span>From idea to shipped product</span>
             </div>
-            <p>&gt; boot profile.exe</p>
-            <p className="green">STATUS: available for serious builds + silly ideas</p>
-            <p>&gt; stack --favorite</p>
-            <p>React, Next.js, TypeScript, Node.js, SQL</p>
-            <p>&gt; mission</p>
-            <p>Ship maintainable apps that feel fast, clear, and human.</p>
-          </div>
+            <dl className="profileDetails">
+              <div><dt>Frontend</dt><dd>React · Next.js · TypeScript</dd></div>
+              <div><dt>Backend</dt><dd>Node.js · AdonisJS · Express</dd></div>
+              <div><dt>Data</dt><dd>SQL · Firebase · Supabase</dd></div>
+            </dl>
+            <p className="profileNote">Built for real people and everyday workflows.</p>
+          </aside>
         </div>
       </section>
 

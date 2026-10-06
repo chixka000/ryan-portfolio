@@ -45,9 +45,10 @@ main {
 }
 
 .hero {
-  min-height: 100vh;
-  padding: 24px clamp(18px, 4vw, 72px) 80px;
+  padding: 24px clamp(18px, 4vw, 72px) 76px;
   position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid rgba(255, 247, 215, 0.12);
 }
 
 .scanline {
@@ -70,14 +71,16 @@ main {
   max-width: 1180px;
   position: relative;
   z-index: 2;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 247, 215, 0.12);
 }
 
 .brand {
-  color: var(--yellow);
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  color: var(--text);
+  font-size: 1.1rem;
   font-weight: 900;
   letter-spacing: 0.08em;
-  text-shadow: 3px 3px 0 var(--pink);
+  font-family: "Courier New", Courier, monospace;
 }
 
 .brand span {
@@ -87,15 +90,14 @@ main {
 .nav div {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 8px;
   justify-content: flex-end;
 }
 
 .nav a:not(.brand) {
-  border: 2px solid rgba(255, 247, 215, 0.25);
-  border-radius: 999px;
-  color: var(--muted);
-  padding: 8px 12px;
+  color: rgba(255, 247, 215, 0.72);
+  font-size: 0.875rem;
+  padding: 8px 10px;
 }
 
 .nav a:not(.brand):hover {
@@ -106,9 +108,9 @@ main {
 .heroGrid {
   align-items: center;
   display: grid;
-  gap: 42px;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-  margin: 82px auto 0;
+  gap: clamp(28px, 5vw, 72px);
+  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.85fr);
+  margin: 72px auto 0;
   max-width: 1180px;
 }
 
@@ -128,14 +130,31 @@ p {
   margin-top: 0;
 }
 
-h1 {
+.hero h1 {
   color: var(--headline);
-  font-size: clamp(3rem, 8vw, 6.8rem);
-  letter-spacing: -0.08em;
-  line-height: 0.9;
-  margin-bottom: 26px;
-  max-width: 980px;
-  text-shadow: 4px 4px 0 var(--headline-shadow), 8px 8px 0 var(--headline-glow);
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+  margin-bottom: 18px;
+  max-width: 600px;
+}
+
+.hero h1 span {
+  color: var(--cyan);
+}
+
+.hero .eyebrow {
+  color: var(--cyan);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.heroTagline {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  margin-bottom: 14px;
 }
 
 h2 {
@@ -152,10 +171,90 @@ h3 {
 }
 
 .intro {
-  color: var(--muted);
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 247, 215, 0.68);
+  font-size: 1rem;
   line-height: 1.7;
-  max-width: 760px;
+  max-width: 490px;
+}
+
+.hero .button {
+  border: 1px solid rgba(255, 247, 215, 0.25);
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 13px 18px;
+  text-transform: none;
+}
+
+.hero .button.primary {
+  background: var(--headline);
+  color: var(--bg-deep);
+  border-color: var(--headline);
+}
+
+.hero .button:hover {
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+.hero a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+.heroProfile {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 247, 215, 0.16);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.profileHeader {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.profileMonogram {
+  background: rgba(79, 248, 255, 0.08);
+  border: 1px solid rgba(79, 248, 255, 0.25);
+  border-radius: 12px;
+  color: var(--cyan);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 14px;
+}
+
+.profileDetails {
+  margin: 24px 0;
+}
+
+.profileDetails div {
+  border-top: 1px solid rgba(255, 247, 215, 0.1);
+  padding: 16px 0;
+}
+
+.profileDetails dt {
+  color: rgba(255, 247, 215, 0.55);
+  font-size: 0.75rem;
+  margin-bottom: 7px;
+}
+
+.profileDetails dd {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.profileNote {
+  color: rgba(255, 247, 215, 0.55);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  margin-bottom: 0;
 }
 
 .ctaRow {
@@ -549,12 +648,31 @@ footer a {
     margin-top: 54px;
   }
 
-  h1 {
-    text-shadow: 3px 3px 0 var(--pink), 6px 6px 0 var(--cyan);
-  }
-
   .terminal {
     transform: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .hero {
+    padding-bottom: 48px;
+  }
+
+  .nav div {
+    justify-content: flex-start;
+    gap: 4px;
+  }
+
+  .nav a:not(.brand) {
+    padding: 8px 8px 8px 0;
+  }
+
+  .heroGrid {
+    margin-top: 36px;
+  }
+
+  .heroProfile {
+    padding: 22px;
   }
 }
 
