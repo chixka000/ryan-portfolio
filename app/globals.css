@@ -1,688 +1,107 @@
-:root {
-  --bg: #160d2f;
-  --bg-deep: #080713;
-  --panel: rgba(41, 22, 78, 0.88);
-  --panel-strong: #25124b;
-  --text: #fff7d7;
-  --muted: #f8bbd0;
-  --pink: #ff4fd8;
-  --yellow: #ffe66d;
-  --cyan: #4ff8ff;
-  --green: #89ff6b;
-  --orange: #ff9f45;
-  --headline: #fff1b8;
-  --headline-shadow: #b85c38;
-  --headline-glow: #2f9c95;
-  --shadow: #05020c;
+@import "tailwindcss";
+
+@theme {
+  --color-background: #100d1c;
+  --color-surface: #1b172a;
+  --color-foreground: #f4f1ea;
+  --color-muted: #b2adbf;
+  --color-accent: #88d9cf;
+  --color-warm: #fff1b8;
+  --color-line: #363044;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
 }
 
-* {
-  box-sizing: border-box;
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at top right, #25203955, transparent 45rem), var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  section[id] { scroll-margin-top: 2rem; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 5px;
+  }
+  ::selection { background: var(--color-accent); color: var(--color-background); }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(255, 79, 216, 0.28), transparent 34rem),
-    radial-gradient(circle at top right, rgba(79, 248, 255, 0.2), transparent 30rem),
-    linear-gradient(135deg, var(--bg-deep), var(--bg));
-  color: var(--text);
-  font-family: "Courier New", Courier, monospace;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-main {
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.hero {
-  padding: 24px clamp(18px, 4vw, 72px) 76px;
+/* Custom game scenery stays in CSS; page layout uses Tailwind utilities. */
+.fishing-screen {
   position: relative;
-  font-family: Arial, Helvetica, sans-serif;
-  border-bottom: 1px solid rgba(255, 247, 215, 0.12);
-}
-
-.scanline {
-  animation: scan 8s linear infinite;
-  background: linear-gradient(transparent, rgba(255, 255, 255, 0.08), transparent);
-  height: 14rem;
-  left: 0;
-  pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: -14rem;
-  z-index: 10;
-}
-
-.nav {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1180px;
-  position: relative;
-  z-index: 2;
-  padding-bottom: 22px;
-  border-bottom: 1px solid rgba(255, 247, 215, 0.12);
-}
-
-.brand {
-  color: var(--text);
-  font-size: 1.1rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  font-family: "Courier New", Courier, monospace;
-}
-
-.brand span {
-  color: var(--cyan);
-}
-
-.nav div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.nav a:not(.brand) {
-  color: rgba(255, 247, 215, 0.72);
-  font-size: 0.875rem;
-  padding: 8px 10px;
-}
-
-.nav a:not(.brand):hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
-}
-
-.heroGrid {
-  align-items: center;
-  display: grid;
-  gap: clamp(28px, 5vw, 72px);
-  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.85fr);
-  margin: 72px auto 0;
-  max-width: 1180px;
-}
-
-.eyebrow {
-  color: var(--green);
-  font-size: 0.85rem;
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  margin: 0 0 14px;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-.hero h1 {
-  color: var(--headline);
-  font-size: clamp(2rem, 4.2vw, 3.5rem);
-  letter-spacing: -0.045em;
-  line-height: 1.12;
-  margin-bottom: 18px;
-  max-width: 600px;
-}
-
-.hero h1 span {
-  color: var(--cyan);
-}
-
-.hero .eyebrow {
-  color: var(--cyan);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.heroTagline {
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
-  line-height: 1.5;
-  margin-bottom: 14px;
-}
-
-h2 {
-  color: var(--yellow);
-  font-size: clamp(2rem, 5vw, 4.3rem);
-  letter-spacing: -0.06em;
-  margin-bottom: 0;
-  text-shadow: 4px 4px 0 var(--pink);
-}
-
-h3 {
-  color: var(--cyan);
-  margin-bottom: 10px;
-}
-
-.intro {
-  color: rgba(255, 247, 215, 0.68);
-  font-size: 1rem;
-  line-height: 1.7;
-  max-width: 490px;
-}
-
-.hero .button {
-  border: 1px solid rgba(255, 247, 215, 0.25);
-  border-radius: 8px;
-  box-shadow: none;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 13px 18px;
-  text-transform: none;
-}
-
-.hero .button.primary {
-  background: var(--headline);
-  color: var(--bg-deep);
-  border-color: var(--headline);
-}
-
-.hero .button:hover {
-  box-shadow: none;
-  transform: translateY(-2px);
-}
-
-.hero a:focus-visible {
-  outline: 2px solid var(--cyan);
-  outline-offset: 5px;
-}
-
-.heroProfile {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 247, 215, 0.16);
-  border-radius: 16px;
-  padding: 28px;
-}
-
-.profileHeader {
-  align-items: center;
-  display: flex;
-  gap: 14px;
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.profileMonogram {
-  background: rgba(79, 248, 255, 0.08);
-  border: 1px solid rgba(79, 248, 255, 0.25);
-  border-radius: 12px;
-  color: var(--cyan);
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.1rem;
-  font-weight: 700;
-  padding: 14px;
-}
-
-.profileDetails {
-  margin: 24px 0;
-}
-
-.profileDetails div {
-  border-top: 1px solid rgba(255, 247, 215, 0.1);
-  padding: 16px 0;
-}
-
-.profileDetails dt {
-  color: rgba(255, 247, 215, 0.55);
-  font-size: 0.75rem;
-  margin-bottom: 7px;
-}
-
-.profileDetails dd {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.profileNote {
-  color: rgba(255, 247, 215, 0.55);
-  font-size: 0.8rem;
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-
-.ctaRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 30px;
-}
-
-.button,
-button {
-  background: var(--panel-strong);
-  border: 3px solid var(--text);
-  box-shadow: 6px 6px 0 var(--shadow);
-  color: var(--text);
-  cursor: pointer;
-  font: inherit;
-  font-weight: 900;
-  padding: 14px 18px;
-  text-transform: uppercase;
-  transition: transform 150ms ease, box-shadow 150ms ease;
-}
-
-.button:hover,
-button:hover {
-  box-shadow: 3px 3px 0 var(--shadow);
-  transform: translate(3px, 3px);
-}
-
-.button.primary {
-  background: var(--pink);
-  color: var(--bg-deep);
-}
-
-.terminal,
-.card,
-.timelineItem,
-.gameShell,
-.projectSlot {
-  background: var(--panel);
-  border: 4px solid var(--text);
-  box-shadow: 10px 10px 0 var(--shadow);
-}
-
-.terminal {
-  color: var(--muted);
-  line-height: 1.65;
-  padding: 22px;
-  transform: rotate(2deg);
-}
-
-.terminalBar {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-
-.terminalBar span {
-  background: var(--pink);
-  border: 2px solid var(--text);
-  height: 16px;
-  width: 16px;
-}
-
-.terminalBar span:nth-child(2) {
-  background: var(--yellow);
-}
-
-.terminalBar span:nth-child(3) {
-  background: var(--green);
-}
-
-.green {
-  color: var(--green);
-}
-
-.panel {
-  margin: 0 auto;
-  max-width: 1180px;
-  padding: 72px clamp(18px, 4vw, 36px);
-}
-
-.sectionTitle {
-  margin-bottom: 28px;
-}
-
-.aboutCard {
-  color: var(--muted);
-  font-size: 1.08rem;
-  line-height: 1.8;
-  padding: clamp(22px, 4vw, 42px);
-}
-
-.split {
-  display: grid;
-  gap: 46px;
-  grid-template-columns: 0.9fr 1.1fr;
-}
-
-.skillGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.skillGrid span {
-  background: var(--yellow);
-  border: 3px solid var(--shadow);
-  box-shadow: 5px 5px 0 var(--pink);
-  color: var(--bg-deep);
-  font-weight: 900;
-  padding: 10px 12px;
-}
-
-.timeline {
-  display: grid;
-  gap: 16px;
-}
-
-.timelineItem {
-  padding: 20px;
-}
-
-.timelineItem p {
-  color: var(--muted);
-  line-height: 1.55;
-  margin-bottom: 8px;
-}
-
-.timelineItem h3 span {
-  color: var(--yellow);
-}
-
-.arcadePanel {
-  max-width: 920px;
-}
-
-.gameShell {
-  padding: 20px;
-}
-
-.scoreBoard {
-  color: var(--green);
-  display: flex;
-  font-weight: 900;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-
-.gameScreen {
-  background:
-    radial-gradient(circle at 20% 80%, rgba(79, 248, 255, 0.2), transparent 8rem),
-    radial-gradient(circle at 80% 70%, rgba(255, 230, 109, 0.16), transparent 7rem),
-    linear-gradient(#181342 0 34%, #155a8a 34% 100%);
-  border: 4px solid var(--cyan);
   height: 260px;
   overflow: hidden;
-  position: relative;
+  border: 1px solid var(--color-accent);
+  border-radius: 12px;
+  background: linear-gradient(#1b1734 0 34%, #17465f 34% 100%);
+  font-family: var(--font-mono);
 }
-
-.gameScreen::after {
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.18) 0 18px,
-      rgba(255, 255, 255, 0.02) 18px 36px
-    );
-  bottom: 0;
-  content: "";
-  height: 72px;
-  left: 0;
+.water-line {
   position: absolute;
-  right: 0;
-}
-
-.waterLine {
-  animation: tide 1.2s steps(2) infinite;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      var(--cyan) 0 22px,
-      transparent 22px 42px
-    );
-  height: 8px;
-  left: 0;
-  position: absolute;
-  right: 0;
   top: 88px;
-  z-index: 1;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, var(--color-accent) 0 22px, transparent 22px 42px);
+  animation: tide 1.2s steps(2) infinite;
 }
-
-.boat {
-  color: var(--yellow);
-  font-size: 3.1rem;
+.fishing-boat {
   position: absolute;
-  text-shadow: 4px 4px 0 var(--pink);
   top: 39px;
+  z-index: 3;
+  font-size: 3.1rem;
+  color: var(--color-warm);
   transform: translateX(-50%);
   transition: left 160ms ease;
-  z-index: 3;
 }
-
-.boat::before {
-  color: var(--text);
+.fishing-boat::before {
   content: "RYAN";
-  font-size: 0.75rem;
-  left: 50%;
   position: absolute;
   top: 13px;
+  left: 50%;
   transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--color-foreground);
 }
-
-.fishingLine {
-  background: var(--text);
-  height: 112px;
+.fishing-line {
   position: absolute;
   top: 82px;
+  z-index: 2;
+  width: 3px;
+  height: 112px;
+  background: var(--color-foreground);
   transform: translateX(-50%);
   transition: height 220ms ease, left 160ms ease;
-  width: 4px;
-  z-index: 2;
 }
-
-.casting .fishingLine {
-  height: 150px;
-}
-
-.hook {
-  color: var(--yellow);
-  font-size: 1.45rem;
-  left: -3px;
+.casting .fishing-line { height: 150px; }
+.fishing-line span {
   position: absolute;
-  text-shadow: 2px 2px 0 var(--pink);
   top: calc(100% - 8px);
+  left: -3px;
+  color: var(--color-warm);
+  font-size: 1.45rem;
 }
-
-.fish {
-  animation: swim 900ms steps(2) infinite;
-  color: var(--green);
-  font-size: clamp(1.4rem, 4vw, 2.5rem);
-  font-weight: 900;
+.fishing-fish {
   position: absolute;
-  text-shadow: 3px 3px 0 var(--bg-deep);
   top: 156px;
+  z-index: 3;
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-accent);
   transform: translateX(-50%);
   transition: left 220ms ease;
-  z-index: 3;
+  animation: swim 900ms steps(2) infinite;
 }
-
-.casting .fish {
-  filter: drop-shadow(0 -10px 0 var(--yellow));
-}
-
-.gameMessage {
-  color: var(--muted);
-  line-height: 1.5;
-  margin: 16px 0;
-}
-
-.controls {
-  display: flex;
-  gap: 12px;
-}
-
-.controls button {
-  min-width: 74px;
-}
-
-.castButton {
-  background: var(--green);
-  color: var(--bg-deep);
-  min-width: 120px;
-}
-
-.projectGrid {
-  display: grid;
-  gap: 22px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.projectSlot {
-  filter: grayscale(0.9);
-  min-height: 220px;
-  opacity: 0.55;
-  padding: 24px;
-  position: relative;
-}
-
-.projectSlot:not(.unlocked)::after {
-  align-items: center;
-  background: rgba(8, 7, 19, 0.78);
-  color: var(--yellow);
-  content: "LOCKED";
-  display: flex;
-  font-size: 1.3rem;
-  font-weight: 900;
-  inset: 0;
-  justify-content: center;
-  position: absolute;
-}
-
-.projectSlot.unlocked {
-  filter: none;
-  opacity: 1;
-}
-
-.projectSlot span {
-  color: var(--green);
-  font-weight: 900;
-}
-
-.projectSlot p {
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-.projectLink {
-  color: var(--cyan);
-  display: inline-block;
-  font-weight: 900;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.projectLink:hover {
-  color: var(--yellow);
-}
-
-.projectLink:focus-visible {
-  outline: 3px solid var(--yellow);
-  outline-offset: 5px;
-}
-
-footer {
-  align-items: center;
-  border-top: 4px solid rgba(255, 247, 215, 0.18);
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: space-between;
-  margin: 40px auto 0;
-  max-width: 1180px;
-  padding: 28px clamp(18px, 4vw, 36px);
-}
-
-footer a {
-  color: var(--cyan);
-  font-weight: 900;
-}
-
-@keyframes scan {
-  to {
-    transform: translateY(calc(100vh + 18rem));
-  }
-}
-
-@keyframes bob {
-  50% {
-    transform: translate(-50%, -12px);
-  }
-}
-
-@keyframes swim {
-  50% {
-    transform: translate(-50%, 6px) scaleX(1.05);
-  }
-}
-
-@keyframes tide {
-  50% {
-    transform: translateX(-20px);
-  }
-}
-
-@media (max-width: 860px) {
-  .nav,
-  .heroGrid,
-  .split,
-  .projectGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .nav {
-    align-items: flex-start;
-    display: grid;
-    gap: 18px;
-  }
-
-  .heroGrid {
-    margin-top: 54px;
-  }
-
-  .terminal {
-    transform: none;
-  }
-}
-
-@media (max-width: 540px) {
-  .hero {
-    padding-bottom: 48px;
-  }
-
-  .nav div {
-    justify-content: flex-start;
-    gap: 4px;
-  }
-
-  .nav a:not(.brand) {
-    padding: 8px 8px 8px 0;
-  }
-
-  .heroGrid {
-    margin-top: 36px;
-  }
-
-  .heroProfile {
-    padding: 22px;
-  }
-}
+.casting .fishing-fish { filter: drop-shadow(0 -8px 0 var(--color-warm)); }
+@keyframes swim { 50% { transform: translate(-50%, 6px); } }
+@keyframes tide { 50% { transform: translateX(-20px); } }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }
