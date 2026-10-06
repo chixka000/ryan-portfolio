@@ -472,6 +472,23 @@ button:hover {
   line-height: 1.55;
 }
 
+.projectLink {
+  color: var(--cyan);
+  display: inline-block;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.projectLink:hover {
+  color: var(--yellow);
+}
+
+.projectLink:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 5px;
+}
+
 footer {
   align-items: center;
   border-top: 4px solid rgba(255, 247, 215, 0.18);

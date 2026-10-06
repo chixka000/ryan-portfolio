@@ -53,12 +53,31 @@ const experience = [
 ];
 
 const projectSlots = [
-  "Project 001",
-  "Project 002",
-  "Project 003",
-  "Project 004",
-  "Project 005",
-  "Project 006",
+  {
+    name: "WLC Enrollment",
+    description: "Online enrollment portal.",
+    url: "https://enrollment.wlcormoc.edu.ph/login",
+  },
+  {
+    name: "TrueROAS",
+    description: "Ad attribution and tracking for ecommerce.",
+    url: "https://www.trueroas.com/",
+  },
+  {
+    name: "KUHL Core",
+    description: "KUHL system login portal.",
+    url: "https://core.kuhl-system.net/login",
+  },
+  {
+    name: "BNC Development",
+    description: "BNC web application.",
+    url: "https://bnc-development-bbfbe.web.app/",
+  },
+  {
+    name: "TAM Development",
+    description: "TAM application login portal.",
+    url: "https://tam-development.web.app/login",
+  },
 ];
 
 const getRandomFishPosition = () => Math.floor(Math.random() * 76) + 12;
@@ -73,13 +92,18 @@ export default function Home() {
   const allProjectsUnlocked = unlockedProjects.length === projectSlots.length;
 
   const message = useMemo(() => {
-    if (allProjectsUnlocked) return "Full net! Every placeholder project slot is unlocked.";
-    if (lastCatch !== null) return `${projectSlots[lastCatch]} unlocked. Cast again for another random slot.`;
+    if (allProjectsUnlocked) return "Full net! Every project is unlocked.";
+    if (lastCatch !== null) return `${projectSlots[lastCatch].name} unlocked. Cast again for another project.`;
     return "Move the hook, line it up with the fish, then cast.";
   }, [allProjectsUnlocked, lastCatch]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        event.target instanceof HTMLElement &&
+        event.target.closest("a, button, input, textarea, select, [contenteditable]")
+      ) return;
+
       if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") {
         setHookPosition((value) => Math.max(4, value - 6));
       }
@@ -306,20 +330,32 @@ export default function Home() {
           <h2>Projects</h2>
         </div>
         <div className="projectGrid">
-          {projectSlots.map((slot, index) => {
+          {projectSlots.map((project, index) => {
             const unlocked = isProjectUnlocked(index);
 
             return (
-            <article className={`projectSlot ${unlocked ? "unlocked" : ""}`} key={slot}>
-              <span>{slot}</span>
-              <h3>{unlocked ? "Coming soon" : "Hidden catch"}</h3>
-              <p>
-                {unlocked
-                  ? "This random portfolio slot is reserved for a future case study."
-                  : "Catch a fish to randomly reveal this project placeholder."}
-              </p>
-            </article>
-          )})}
+              <article className={`projectSlot ${unlocked ? "unlocked" : ""}`} key={project.url}>
+                <span>Project {String(index + 1).padStart(3, "0")}</span>
+                <h3>{unlocked ? project.name : "Hidden catch"}</h3>
+                <p>
+                  {unlocked
+                    ? project.description
+                    : "Catch a fish to randomly reveal this project."}
+                </p>
+                {unlocked && (
+                  <a
+                    className="projectLink"
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${project.name} (opens in a new tab)`}
+                  >
+                    Visit project ↗
+                  </a>
+                )}
+              </article>
+            );
+          })}
         </div>
       </section>
 
