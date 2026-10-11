@@ -1,6 +1,7 @@
 export const skills = [
   "React.js",
   "Next.js",
+  "WordPress",
   "TypeScript",
   "Node.js",
   "AdonisJS",
